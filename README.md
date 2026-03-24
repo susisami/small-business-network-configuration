@@ -7,18 +7,18 @@ Designed and configured a small business network using Cisco IOS. The network in
 ![Topology](docs/topology.PNG)
 
 ## Key Features
-- OSPF dynamic routing across multiple routers 
-- VLAN segmentation and inter-VLAN routing (Layer 3 switch)
-- Implemented DHCP server on Layer 3 switch for dynamic IP address allocation with excluded address ranges for static assignments
-- EtherChannel link aggregation between DS_X1 and AS_X1 
+- OSPF dynamic routing across multiple routers  
+- VLAN segmentation and inter-VLAN routing using a Layer 3 switch  
+- Configured DHCP services on a Layer 3 switch with excluded address ranges for static assignments  
+- EtherChannel link aggregation between distribution and access layer switches  
 - Spanning Tree (PVST) for redundancy  
-- Network security: DHCP Snooping, DAI, BPDU Guard
-- Configured port security with sticky MAC learning and limited devices per access port
-- Implemented network-wide time synchronization using external NTP servers.
-- Secure remote access using SSH  
+- Implemented network security features: DHCP Snooping, DAI, BPDU Guard  
+- Configured port security using sticky MAC addresses with a maximum of two devices per access port  
+- Implemented network-wide time synchronization using external NTP servers  
+- Secure remote access via SSH    
 
 ## My Contributions
-- Designed IP addressing scheme with subnetting to support required number of devices in each VLAN  
+- Designed IP addressing and subnetting scheme to support required host capacity per VLAN  
 - Configured routing (OSPF) and switching features  
 - Implemented VLANs and inter-VLAN routing
 - Configured DHCP server and its pools for the subnets with excluded addresses for static ip addressing. 
@@ -33,7 +33,7 @@ Designed and configured a small business network using Cisco IOS. The network in
 
 ## Network Structure
 The topology consists of:
-- 3 routers, of which two are connected also via serial link.  
+3 routers interconnected via Ethernet and serial links  
 - Layer 2 and Layer 3 switches  
 - Multiple VLANs for network segmentation  
 - Redundant links for high availability  
