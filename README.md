@@ -47,6 +47,7 @@ router ospf 1
  network 10.95.98.0 0.0.255.255 area 0
 
 Example Access Port configuration:
+```bash
 interface range fa0/1 - 5
  switchport mode access
  switchport access vlan 97
