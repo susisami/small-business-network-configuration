@@ -40,7 +40,7 @@ The topology consists of:
 
 ## Configuration Examples
 
-##Example OSPF configuration:
+### Example OSPF configuration:
   router ospf 1
   router-id 1.1.1.1  (ID for each router is different so for R2 its 2.2.2.2 )
   network 10.95.98.0 0.0.255.255 area 0
