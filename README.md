@@ -1,7 +1,7 @@
 # Small Business Network Design & Configuration
 
 ## Overview
-Designed and configured a small business network using Cisco IOS. The network includes multiple routers and Layer 2/3 switches with VLAN segmentation, dynamic routing, and security features.
+Designed and configured a small business network using Cisco IOS. The network includes multiple routers and Layer 2/3 switches with VLAN segmentation, dynamic routing and security features.
 
 ## Network Topology
 ![Topology](docs/network-topology.png)
