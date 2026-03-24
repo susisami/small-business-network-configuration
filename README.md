@@ -4,7 +4,7 @@
 Designed and configured a small business network using Cisco IOS. The network includes multiple routers and Layer 2/3 switches with VLAN segmentation, dynamic routing and security features.
 
 ## Network Topology
-![Topology](docs/network-topology.png)
+![Topology](Documents/Topology.png)
 
 ## Key Features
 - VLAN segmentation and inter-VLAN routing (Layer 3 switch)  
