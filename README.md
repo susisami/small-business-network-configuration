@@ -45,6 +45,7 @@ OSPF Configuration
 router ospf 1
  router-id 1.1.1.1
  network 10.95.98.0 0.0.255.255 area 0
+```
 
 Example Access Port configuration:
 ```bash
@@ -63,8 +64,10 @@ interface range fa0/11 - 12
 ! Disable unused ports
 interface range fa0/13 - 24
 shutdown
+```
   
 Example Etherchannel configuration:
+```bash
 interface range f1/0/23 - 24
  shutdown
  channel-group 1 mode desirable
@@ -73,21 +76,25 @@ interface range f1/0/23 - 24
 interface port-channel 1
  switchport mode trunk
  switchport trunk allowed vlan 97,98,99
+```
 
 Example DHCP server configuration:
+```bash
 ip dhcp excluded-address 10.95.98.1 10.95.98.5
 
 ip dhcp pool Students
  network 10.95.98.0 255.255.255.192
  default-router 10.95.98.1
  dns-server 8.8.8.8
+```
 
 Example Portsecurity implementation:
+```bash
 interface range fa0/1 - 12
  switchport port-security
  switchport port-security maximum 2
  switchport port-security violation shutdown
  switchport port-security mac-address sticky
-
+```
 
 
