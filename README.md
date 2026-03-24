@@ -9,12 +9,12 @@ Designed and configured a small business network using Cisco IOS. The network in
 ## Key Features
 - OSPF dynamic routing across multiple routers 
 - VLAN segmentation and inter-VLAN routing (Layer 3 switch)
-- Implemented DHCP server on Layer 3 switch for dynamic IP address allocation & additional excluded addressing
+- Implemented DHCP server on Layer 3 switch for dynamic IP address allocation with excluded address ranges for static assignments
 - EtherChannel link aggregation between DS_X1 and AS_X1 
 - Spanning Tree (PVST) for redundancy  
 - Network security: DHCP Snooping, DAI, BPDU Guard
 - Configured port security with sticky MAC learning and limited devices per access port
-- Implemented network-wide time synchronization using two external NTP servers.
+- Implemented network-wide time synchronization using external NTP servers.
 - Secure remote access using SSH  
 
 ## My Contributions
@@ -27,8 +27,8 @@ Designed and configured a small business network using Cisco IOS. The network in
 
 ## Technologies
 - Cisco IOS  
-- Networking protocols: OSPF, STP, EtherChannel
-- Security protocols: DHCP Snooping, BPDU Guard, Portsecurity, DAI, SSH  
+- Routing & Switching: OSPF, STP/PVST, EtherChannel  
+- Security: DHCP Snooping, DAI, BPDU Guard, Port Security, SSH  
 - VLANs & Layer 2/3 switching   
 
 ## Network Structure
@@ -71,7 +71,7 @@ The topology consists of:
   
   interface port-channel 1
   switchport mode trunk
-  switchport trunk allowed vlan 97,98,9
+  switchport trunk allowed vlan 97,98,99
 
   Cisco proprietary link aggregation protocol PAgP was implemented between the switches.
 
