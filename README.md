@@ -40,13 +40,13 @@ The topology consists of:
 
 ## Configuration Examples
 
-### OSPF Configuration
+OSPF Configuration
 ```bash
 router ospf 1
  router-id 1.1.1.1
  network 10.95.98.0 0.0.255.255 area 0
 
-##Example Access Port configuration:
+Example Access Port configuration:
 interface range fa0/1 - 5
  switchport mode access
  switchport access vlan 97
@@ -63,7 +63,7 @@ interface range fa0/11 - 12
 interface range fa0/13 - 24
 shutdown
   
-##Example Etherchannel configuration:
+Example Etherchannel configuration:
 interface range f1/0/23 - 24
  shutdown
  channel-group 1 mode desirable
@@ -73,7 +73,7 @@ interface port-channel 1
  switchport mode trunk
  switchport trunk allowed vlan 97,98,99
 
-##Example DHCP server configuration:
+Example DHCP server configuration:
 ip dhcp excluded-address 10.95.98.1 10.95.98.5
 
 ip dhcp pool Students
@@ -81,7 +81,7 @@ ip dhcp pool Students
  default-router 10.95.98.1
  dns-server 8.8.8.8
 
-##Example Portsecurity implementation:
+Example Portsecurity implementation:
 interface range fa0/1 - 12
  switchport port-security
  switchport port-security maximum 2
