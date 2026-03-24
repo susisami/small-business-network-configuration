@@ -7,32 +7,86 @@ Designed and configured a small business network using Cisco IOS. The network in
 ![Topology](Documents/topology.PNG)
 
 ## Key Features
-- VLAN segmentation and inter-VLAN routing (Layer 3 switch)  
-- OSPF dynamic routing across multiple routers  
-- EtherChannel link aggregation  
-- Spanning Tree (STP/PVST) for redundancy  
-- Network security: DHCP Snooping, DAI, BPDU Guard  
+- OSPF dynamic routing across multiple routers 
+- VLAN segmentation and inter-VLAN routing (Layer 3 switch)
+- Implemented DHCP server on Layer 3 switch for dynamic IP address allocation & additional excluded addressing
+- EtherChannel link aggregation between DS_X1 and AS_X1 
+- Spanning Tree (PVST) for redundancy  
+- Network security: DHCP Snooping, DAI, BPDU Guard
+- Configured port security with sticky MAC learning and limited devices per access port
+- Implemented network-wide time synchronization using two external NTP servers.
 - Secure remote access using SSH  
 
 ## My Contributions
-- Designed the full network topology  
+- Designed IP addressing scheme with subnetting to support required number of devices in each VLAN  
 - Configured routing (OSPF) and switching features  
-- Implemented VLANs and inter-VLAN routing  
-- Applied network security configurations  
+- Implemented VLANs and inter-VLAN routing
+- Configured DHCP server and its pools for the subnets with excluded addresses for static ip addressing. 
+- Applied network security configurations   
 - Tested connectivity and redundancy across the network  
 
 ## Technologies
 - Cisco IOS  
-- Networking protocols: OSPF, STP, EtherChannel  
-- VLANs & Layer 2/3 switching  
-- Network security features  
+- Networking protocols: OSPF, STP, EtherChannel
+- Security protocols: DHCP Snooping, BPDU Guard, Portsecurity, DAI, SSH  
+- VLANs & Layer 2/3 switching   
 
 ## Network Structure
 The topology consists of:
-- 3 routers connected via serial links  
+- 3 routers, of which two are connected also via serial link.  
 - Layer 2 and Layer 3 switches  
 - Multiple VLANs for network segmentation  
 - Redundant links for high availability  
 
 ## Configuration Examples
 Example OSPF configuration:
+  router ospf 1
+  router-id 1.1.1.1  (ID for each router is different so for R2 its 2.2.2.2 )
+  network 10.95.98.0 0.0.255.255 area 0
+
+Example Access Port configuration:
+  interface range fa0/1 - 5
+  switchport mode access
+  switchport access vlan 97
+  
+  interface range fa0/6 - 10
+  switchport mode access
+  switchport access vlan 98
+  
+  interface range fa0/11 - 12
+  switchport mode access
+  switchport access vlan 99
+  
+  - Unused ports were administratively shutdown to improve security across the network.
+  
+Example Etherchannel configuration:
+  - Etherchannel was implemented for improved redundancy between the L2 & L3 switches.
+  
+  interface range f1/0/23 - 24
+  shutdown
+  channel-group 1 mode desirable
+  no shutdown
+  exit
+  
+  interface port-channel 1
+  switchport mode trunk
+  switchport trunk allowed vlan 97,98,9
+
+  - Cisco proprietary link aggregation protocol PAgP was implemented between the switches.
+
+Example DHCP server configuration:
+  ip dhcp excluded-address 10.95.98.1 10.95.98.5
+  ip dhcp pool Students
+  network 10.95.98.0 255.255.255.192
+  default-router 10.95.98.1
+  dns-server 8.8.8.8
+
+Example Portsecurity implementation:
+  interface f0/1-12
+  switchport port-security
+  switchport port-security maximum 2
+  switchport port-security violation shutdown
+  switchport port-security mac-address sticky
+
+
+
