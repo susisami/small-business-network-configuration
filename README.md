@@ -47,48 +47,46 @@ router ospf 1
  network 10.95.98.0 0.0.255.255 area 0
 
 ##Example Access Port configuration:
-  interface range fa0/1 - 5
-  switchport mode access
-  switchport access vlan 97
-  
-  interface range fa0/6 - 10
-  switchport mode access
-  switchport access vlan 98
-  
-  interface range fa0/11 - 12
-  switchport mode access
-  switchport access vlan 99
-  
-  Unused ports were administratively shutdown to improve security across the network.
+interface range fa0/1 - 5
+ switchport mode access
+ switchport access vlan 97
+
+interface range fa0/6 - 10
+ switchport mode access
+ switchport access vlan 98
+
+interface range fa0/11 - 12
+ switchport mode access
+ switchport access vlan 99
+
+! Disable unused ports
+interface range fa0/13 - 24
+shutdown
   
 ##Example Etherchannel configuration:
-  Etherchannel was implemented for improved redundancy between the L2 & L3 switches.
-  
-  interface range f1/0/23 - 24
-  shutdown
-  channel-group 1 mode desirable
-  no shutdown
-  exit
-  
-  interface port-channel 1
-  switchport mode trunk
-  switchport trunk allowed vlan 97,98,99
+interface range f1/0/23 - 24
+ shutdown
+ channel-group 1 mode desirable
+ no shutdown
 
-  Cisco proprietary link aggregation protocol PAgP was implemented between the switches.
+interface port-channel 1
+ switchport mode trunk
+ switchport trunk allowed vlan 97,98,99
 
 ##Example DHCP server configuration:
-  ip dhcp excluded-address 10.95.98.1 10.95.98.5
-  ip dhcp pool Students
-  network 10.95.98.0 255.255.255.192
-  default-router 10.95.98.1
-  dns-server 8.8.8.8
+ip dhcp excluded-address 10.95.98.1 10.95.98.5
+
+ip dhcp pool Students
+ network 10.95.98.0 255.255.255.192
+ default-router 10.95.98.1
+ dns-server 8.8.8.8
 
 ##Example Portsecurity implementation:
-  interface f0/1-12
-  switchport port-security
-  switchport port-security maximum 2
-  switchport port-security violation shutdown
-  switchport port-security mac-address sticky
+interface range fa0/1 - 12
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation shutdown
+ switchport port-security mac-address sticky
 
 
 
